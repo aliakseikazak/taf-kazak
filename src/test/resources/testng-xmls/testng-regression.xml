@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" verbose="1">
+
+    <test name="All active tests" parallel="true">
+        <packages>
+            <package name="by.kazak.taf.test"/>
+        </packages>
+    </test>
+
+</suite>
