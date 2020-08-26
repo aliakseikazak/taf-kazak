@@ -12,8 +12,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>14</java.version>
-        <selenium.chromedriver.version>84.0.4147.30</selenium.chromedriver.version>
-        <selenium.geckodriver.version>0.27.0</selenium.geckodriver.version>
     </properties>
 
     <dependencies>
@@ -24,9 +22,15 @@
         </dependency>
 
         <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.3.0</version>
+            <version>7.1.0</version>
             <scope>test</scope>
         </dependency>
 

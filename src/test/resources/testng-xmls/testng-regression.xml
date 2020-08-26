@@ -3,7 +3,7 @@
 
     <test name="All active tests" parallel="true">
         <packages>
-            <package name="by.kazak.taf.test"/>
+            <package name="by.kazak.taf.test.*"/>
         </packages>
     </test>
 
