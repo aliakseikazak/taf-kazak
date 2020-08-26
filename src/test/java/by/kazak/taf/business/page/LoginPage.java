@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import by.kazak.taf.test.testData.model.User;
+
 public class LoginPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@placeholder='Login']")
@@ -27,9 +29,9 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public MainPage login(String username, String password) {
-        loginInput.sendKeys(username);
-        passwordInput.sendKeys(password);
+    public MainPage login(User user) {
+        loginInput.sendKeys(user.getUserName());
+        passwordInput.sendKeys(user.getPassword());
         submitBtn.click();
         return new MainPage(driver);
     }

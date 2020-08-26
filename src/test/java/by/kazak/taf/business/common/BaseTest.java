@@ -4,10 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import by.kazak.taf.core.config.ConfigData;
 import by.kazak.taf.core.webDriver.DriverSingleton;
 
-public class BaseTest implements ConfigData {
+public class BaseTest {
 
     protected WebDriver driver;
 
