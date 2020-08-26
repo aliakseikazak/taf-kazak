@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM__OUT">
+            <PatternLayout>
+                <Pattern>%highlight{%d [%t] %-2p %l - %m%n%throwable}</Pattern>
+            </PatternLayout>
+        </Console>
+        <File name="File" fileName="target/logs/taf.log">
+            <PatternLayout>
+                <Pattern>%d [%t] %-2p %l - %m%n%throwable</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
