@@ -5,12 +5,16 @@ import org.testng.annotations.Test;
 import by.kazak.taf.business.common.BaseTest;
 import by.kazak.taf.business.page.LoginPage;
 import by.kazak.taf.business.page.MainPage;
+import by.kazak.taf.core.utilities.TestGroup;
 import by.kazak.taf.test.testData.model.User;
 import by.kazak.taf.test.testData.service.UserCreator;
 
 public class UserAccessTest extends BaseTest {
 
-    @Test
+    /**
+     * @author Aliaksei Kazak
+     */
+    @Test(groups = {TestGroup.UI, TestGroup.REGRESSION})
     public void validUserCanLogin() {
         User superUser = UserCreator.getSuperUser();
 
