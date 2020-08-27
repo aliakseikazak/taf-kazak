@@ -21,15 +21,13 @@ public class DriverSingleton implements ConfigData {
         if (null == driver) {
             // TODO: add possibility to choose browser from System.property
             switch (BROWSER) {
-                case "firefox": {
+                case "firefox" -> {
                     WebDriverManager.firefoxdriver().browserVersion(Browser.FIREFOX.getVersion()).setup();
                     driver = getFirefoxDriver();
-                    break;
                 }
-                default: {
+                default -> {
                     WebDriverManager.chromedriver().browserVersion(Browser.CHROME.getVersion()).setup();
                     driver = getChromeDriver();
-                    break;
                 }
             }
             LOG.info(String.format("-====Browser '%s' opened====-", BROWSER));

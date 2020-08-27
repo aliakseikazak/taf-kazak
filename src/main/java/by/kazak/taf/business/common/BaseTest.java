@@ -42,6 +42,7 @@ public class BaseTest implements ConfigData {
         log.info("====ENVIRONMENT INFO====");
         Map<Object, Object> envInfo = Stream.of(new String[][]{
                 {"APP", APP_NAME},
+                {"ENVIRONMENT", APP_ENV},
                 {"BROWSER", BROWSER}
         }).collect(Collectors.toMap(key -> key[0], value -> value[1]));
         envInfo.forEach((key, value) -> log.info(String.format("[%s] = %s", key, value)));
