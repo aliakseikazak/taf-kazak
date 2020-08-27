@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.is;
 
-public class MainPage extends BasePage {
+public class MainPage extends AbstractPage {
 
     private final By loggedInUserXPath = By.xpath("//div[contains(@class, 'username')]");
 

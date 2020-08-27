@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import by.kazak.taf.business.model.User;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@placeholder='Login']")
     private WebElement loginInput;
