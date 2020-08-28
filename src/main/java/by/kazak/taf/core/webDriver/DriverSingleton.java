@@ -37,16 +37,18 @@ public class DriverSingleton implements ConfigData {
         return driver;
     }
 
-    private static WebDriverDecorator getFirefoxDriver() {
-        return new WebDriverDecorator(new FirefoxDriver());
+    private static FirefoxDriver getFirefoxDriver() {
+        return new FirefoxDriver();
     }
 
-    private static WebDriverDecorator getChromeDriver() {
-        return new WebDriverDecorator(new ChromeDriver());
+    private static ChromeDriver getChromeDriver() {
+        return new ChromeDriver();
     }
 
     public static void closeDriver() {
+        LOG.info(String.format("Closing '%s' browser...", BROWSER));
         driver.quit();
         driver = null;
+        LOG.info(String.format("-====Browser '%s' closed====-", BROWSER));
     }
 }

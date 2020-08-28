@@ -15,7 +15,7 @@ import by.kazak.taf.core.webDriver.DriverSingleton;
 
 public class TestListener implements ITestListener {
 
-    private final Logger log = LogManager.getRootLogger();
+    private static final Logger LOG = LogManager.getRootLogger();
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -37,7 +37,7 @@ public class TestListener implements ITestListener {
         try {
             FileUtils.copyFile(screenCapture, new File(String.format(".//target//screenshots//%s.png", DateUtils.getCurrentDateTimeAsString())));
         } catch (IOException e) {
-            log.error(String.format("Failed to save screenshot: %s", e.getLocalizedMessage()));
+            LOG.error(String.format("Failed to save screenshot: %s", e.getLocalizedMessage()));
         }
     }
 }

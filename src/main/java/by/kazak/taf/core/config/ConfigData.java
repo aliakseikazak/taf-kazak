@@ -9,6 +9,7 @@ public interface ConfigData {
     
     String BROWSER = PropertyManager.getProperty("app.config.browser");
     int WAIT_TIMEOUT_SECONDS = Integer.parseInt(PropertyManager.getProperty("selenium.wait.page.load"));
+    int POLLING_INTERVAL = Integer.parseInt(PropertyManager.getProperty("selenium.wait.polling.interval"));
 
     String BASE_URL = PropertyManager.getProperty("app.base.page", APP_ENV);
     String LOGIN_URL = String.format(PropertyManager.getProperty("app.login.page"), BASE_URL);

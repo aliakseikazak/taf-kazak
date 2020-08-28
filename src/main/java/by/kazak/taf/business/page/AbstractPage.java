@@ -9,7 +9,7 @@ import by.kazak.taf.core.config.ConfigData;
 public abstract class AbstractPage implements ConfigData {
 
     protected WebDriver driver;
-    protected Logger log = LogManager.getRootLogger();
+    protected static final Logger LOG = LogManager.getRootLogger();
 
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;

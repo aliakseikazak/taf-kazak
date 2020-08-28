@@ -20,7 +20,7 @@ import by.kazak.taf.core.webDriver.DriverSingleton;
 public class BaseTest implements ConfigData {
 
     protected WebDriver driver;
-    private final Logger log = LogManager.getRootLogger();
+    private static final Logger LOG = LogManager.getRootLogger();
 
     @BeforeSuite
     public void beforeSuite() {
@@ -39,13 +39,13 @@ public class BaseTest implements ConfigData {
 
     private void environmentLogger() {
         // TODO: add more useful info
-        log.info("====ENVIRONMENT INFO====");
+        LOG.info("====ENVIRONMENT INFO====");
         Map<Object, Object> envInfo = Stream.of(new String[][]{
                 {"APP", APP_NAME},
                 {"ENVIRONMENT", APP_ENV},
                 {"BROWSER", BROWSER}
         }).collect(Collectors.toMap(key -> key[0], value -> value[1]));
-        envInfo.forEach((key, value) -> log.info(String.format("[%s] = %s", key, value)));
-        log.info("========================");
+        envInfo.forEach((key, value) -> LOG.info(String.format("[%s] = %s", key, value)));
+        LOG.info("========================");
     }
 }
