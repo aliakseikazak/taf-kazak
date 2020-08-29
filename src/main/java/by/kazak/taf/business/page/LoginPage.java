@@ -26,7 +26,7 @@ public class LoginPage extends BasePage {
     public MainPage login(User user) {
         setUserCredentials(user);
         click(submitBtnXPath);
-        log.info(String.format("User '%s' logged in successfully", user.getUserLogin()));
+        log.info("User '{}' logged in successfully", user.getUserLogin());
         return new MainPage();
     }
 }

@@ -18,20 +18,20 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        log.info(String.format("\n-=========================================[ TEST %s.%s STARTED ]==========================================-", 
-                result.getTestClass().getName(), result.getMethod().getMethodName()));
+        log.info("\n-=========================================[ TEST {}.{} STARTED ]==========================================-",
+                result.getTestClass().getName(), result.getMethod().getMethodName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        log.info(String.format("\n-==========================================[ TEST %s.%s PASSED ]==========================================-", 
-                result.getTestClass().getName(), result.getMethod().getMethodName()));
+        log.info("\n-==========================================[ TEST {}.{} PASSED ]==========================================-",
+                result.getTestClass().getName(), result.getMethod().getMethodName());
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        log.error(String.format("\n-=========================================[ TEST %s.%s FAILED ]=========================================-", 
-                result.getTestClass().getName(), result.getMethod().getMethodName()));
+        log.error("\n-=========================================[ TEST {}.{} FAILED ]=========================================-",
+                result.getTestClass().getName(), result.getMethod().getMethodName());
         saveScreenshot(result);
     }
 
@@ -41,7 +41,7 @@ public class TestListener implements ITestListener {
             FileUtils.copyFile(file, new File(String.valueOf(
                     Paths.get("target", "screenshots", String.format("%s.png", DateUtils.getCurrentDateTimeAsString())))));
         } catch (IOException e) {
-            log.error(String.format("Failed to save screenshot: %s", e.getLocalizedMessage()));
+            log.error("Failed to save screenshot: {}", e.getLocalizedMessage());
             e.printStackTrace();
         }
         log.error(result.getThrowable());

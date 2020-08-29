@@ -38,9 +38,9 @@ public final class Browser {
 
     public void closeDriver() {
         try {
-            log.info(String.format("Closing '%s' browser...", ConfigData.BROWSER));
+            log.info("Closing '{}' browser...", ConfigData.BROWSER);
             getDriver().quit();
-            log.info(String.format("-====Browser '%s' closed====-", ConfigData.BROWSER));
+            log.info("-====Browser '{}' closed====-", ConfigData.BROWSER);
         } catch (Exception e) {
             log.error(this, e);
         } finally {
@@ -72,7 +72,7 @@ public final class Browser {
         try {
             WebDriver driver = BrowserFactory.setBrowser();
             driver.manage().timeouts().implicitlyWait(ConfigData.BROWSER_TIMEOUT, TimeUnit.SECONDS);
-            log.info(String.format("-====Browser '%s' opened====-", ConfigData.BROWSER));
+            log.info("-====Browser '{}' opened====-", ConfigData.BROWSER);
             return driver;
         } catch (NamingException e) {
             log.error(e);

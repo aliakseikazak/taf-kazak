@@ -12,7 +12,8 @@ public class MainPage extends BasePage {
     private static String loggedInUserXPath = "//div[contains(@class, 'username')]";
 
     public MainPage validateLoggedInUserName(String userName) {
-        assertThat(getText(loggedInUserXPath), is(equalToIgnoringCase(userName)));
+        assertThat(String.format("Check that '%s' username appears correctly", userName),
+                getText(loggedInUserXPath), is(equalToIgnoringCase(userName)));
         return this;
     }
 }

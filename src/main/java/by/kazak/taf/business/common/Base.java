@@ -25,6 +25,7 @@ public class Base {
                 {"ENVIRONMENT", ConfigData.APP_ENV},
                 {"BROWSER", ConfigData.BROWSER}
         }).collect(Collectors.toMap(key -> key[0], value -> value[1]));
+        if (ConfigData.BROWSER.equals("none")) envInfo.put("REST API", "true");
         envInfo.forEach((key, value) -> log.info(String.format("[%s] = %s", key, value)));
         log.info("========================");
     }

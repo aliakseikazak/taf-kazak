@@ -9,7 +9,7 @@ public class UserCreator {
     public static User getSuperUser() {
         return new User(ConfigData.SUPER_USER_NAME, ConfigData.SUPER_USER_PASSWORD);
     }
-    
+
     public static User getDefaultUser() {
         return new User(ConfigData.DEFAULT_USER_NAME, ConfigData.DEFAULT_USER_PASSWORD);
     }

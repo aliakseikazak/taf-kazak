@@ -1,6 +1,5 @@
 package by.kazak.taf.core.webDriver;
 
-import java.util.EnumMap;
 import javax.naming.NamingException;
 
 import org.openqa.selenium.WebDriver;
@@ -45,7 +44,7 @@ public final class BrowserFactory {
 
         public abstract DriverManagerType getDriverType();
     }
-    
+
     static WebDriver setBrowser() throws NamingException {
         BrowserType browserType = BrowserType.valueOf(ConfigData.BROWSER.toUpperCase());
         WebDriver driver;
