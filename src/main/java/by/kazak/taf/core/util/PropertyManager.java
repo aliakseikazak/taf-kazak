@@ -12,16 +12,20 @@ public class PropertyManager {
         webProperty = ResourceBundle.getBundle("config.web");
     }
 
+    enum Env {
+        QA, WEB
+    }
+
     public static String getProperty(String property) {
         return generalProperty.getString(property);
     }
 
     public static String getProperty(String property, String environment) {
+        Env env = Env.valueOf(environment.toUpperCase());
         // TODO: add possibility to choose env from System.property
-        return switch (environment) {
-            case "qa" -> qaProperty.getString(property);
-            case "web" -> webProperty.getString(property);
-            default -> throw new IllegalArgumentException(String.format("Environment '%s' type is not supported!", environment));
+        return switch (env) {
+            case QA -> qaProperty.getString(property);
+            case WEB -> webProperty.getString(property);
         };
     }
 }

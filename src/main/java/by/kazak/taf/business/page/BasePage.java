@@ -8,26 +8,20 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import by.kazak.taf.core.config.ConfigData;
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 public class BasePage extends AbstractPage {
 
-    protected BasePage(WebDriver driver) {
-        super(driver);
-    }
-
-    @Override
-    protected AbstractPage openPage() {
-        return null;
-    }
-
     protected void click(String elementXPath) {
-        click(WAIT_TIMEOUT_SECONDS, elementXPath);
+        click(ConfigData.WAIT_TIMEOUT_SECONDS, elementXPath);
     }
 
     protected void click(long timeout, String elementXPath) {
@@ -49,11 +43,11 @@ public class BasePage extends AbstractPage {
                     }
                     return false;
                 });
-        LOG.info(String.format("Click on element with xPath: '%s'", createXPath(elementXPath)));
+        log.info(String.format("Click on element with xPath: '%s'", createXPath(elementXPath)));
     }
 
     protected void sendKeys(String value, String elementXPath) {
-        sendKeys(WAIT_TIMEOUT_SECONDS, value, elementXPath);
+        sendKeys(ConfigData.WAIT_TIMEOUT_SECONDS, value, elementXPath);
     }
 
     protected void sendKeys(long timeout, String value, String elementXPath) {
@@ -72,11 +66,11 @@ public class BasePage extends AbstractPage {
                             StringUtils.startsWith(value, element.getAttribute("title")) ||
                             StringUtils.endsWith(value, actualValue));
                 });
-        LOG.info(String.format("Set value '%s' in element with xPath: '%s'", value, createXPath(elementXPath)));
+        log.info(String.format("Set value '%s' in element with xPath: '%s'", value, createXPath(elementXPath)));
     }
 
     protected String getText(String elementXPath) {
-        return getText(WAIT_TIMEOUT_SECONDS, elementXPath);
+        return getText(ConfigData.WAIT_TIMEOUT_SECONDS, elementXPath);
     }
 
     protected String getText(long timeout, String elementXPath) {
@@ -85,7 +79,7 @@ public class BasePage extends AbstractPage {
                 .ignoring(StaleElementReferenceException.class, WebDriverException.class)
                 .until((ExpectedCondition<String>) driver -> {
                     String text = findElement(elementXPath).getText();
-                    LOG.info(String.format("Get text from element with xPath: '%s'", createXPath(elementXPath)));
+                    log.info(String.format("Get text from element with xPath: '%s'", createXPath(elementXPath)));
                     return text;
                 });
     }
@@ -93,12 +87,12 @@ public class BasePage extends AbstractPage {
     protected void selectTextByPressCtrlA(String elementXPath) {
         WebElement element = waitUntilElementVisible(elementXPath);
         element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        LOG.debug(String.format("Select all in element in element with xPath: '%s'", createXPath(elementXPath)));
+        log.debug(String.format("Select all in element in element with xPath: '%s'", createXPath(elementXPath)));
     }
 
     protected void pressBackspace(String elementXPath) {
         waitUntilElementToBeClickable(elementXPath).sendKeys(Keys.BACK_SPACE);
-        LOG.debug(String.format("Press 'BACKSPACE' button in element with xPath: '%s'", createXPath(elementXPath)));
+        log.debug(String.format("Press 'BACKSPACE' button in element with xPath: '%s'", createXPath(elementXPath)));
     }
 
     protected WebElement findElement(String elementXPath) {
@@ -108,30 +102,31 @@ public class BasePage extends AbstractPage {
     protected String createXPath(String elementXPath) {
         String xPath = String.format("(%s)[not(ancestor::div[contains(@style,'display: none')])]", elementXPath);
         xPath = xPath.replaceAll("\\$(.*?)\\$", String.format("translate(%s, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')", "$1"));
-        LOG.debug(String.format("Created xPath: %s", xPath));
+        log.debug(String.format("Created xPath: %s", xPath));
         return xPath;
     }
 
     protected WebElement waitUntilElementVisible(String elementXPath) {
-        return waitUntilElementVisible(WAIT_TIMEOUT_SECONDS, elementXPath);
+        return waitUntilElementVisible(ConfigData.WAIT_TIMEOUT_SECONDS, elementXPath);
     }
 
     protected WebElement waitUntilElementVisible(long timeout, String elementXPath) {
         String xPath = createXPath(elementXPath);
-        LOG.debug(String.format("Wait until element visible with xPath: '%s', max '%d' seconds", xPath, timeout));
-        return new WebDriverWait(driver, timeout, POLLING_INTERVAL).ignoring(StaleElementReferenceException.class, WebDriverException.class)
+        log.debug(String.format("Wait until element visible with xPath: '%s', max '%d' seconds", xPath, timeout));
+        return new WebDriverWait(driver, timeout,ConfigData. POLLING_INTERVAL)
+                .ignoring(StaleElementReferenceException.class, WebDriverException.class)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
     }
 
     protected WebElement waitUntilElementToBeClickable(String elementXPath) {
         String xPath = createXPath(elementXPath);
-        LOG.debug(String.format("Wait until element to be clickable, xPath: '%s'", elementXPath));
-        WebDriverWait wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        log.debug(String.format("Wait until element to be clickable, xPath: '%s'", elementXPath));
+        WebDriverWait wait = new WebDriverWait(driver, ConfigData.WAIT_TIMEOUT_SECONDS);
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xPath)));
     }
 
     private void waitForPageLoaded(long timeout) {
-        LOG.debug(String.format("Wait for page loaded... max '%d' seconds", timeout));
+        log.debug(String.format("Wait for page loaded... max '%d' seconds", timeout));
         new WebDriverWait(driver, timeout).until((ExpectedCondition<Boolean>) driver -> ((JavascriptExecutor) Objects.requireNonNull(driver))
                 .executeScript("return document.readyState").equals("complete"));
     }
