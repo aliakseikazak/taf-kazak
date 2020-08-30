@@ -6,9 +6,14 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class LoginPage extends BasePage {
 
+    private static final String SIGNED_IN_SUCCESSFULLY = "Signed in successfully";
+
     private static String loginInputXPath = "//input[@placeholder='Login']";
     private static String passwordInputXPath = "//input[@placeholder='Password']";
-    private static String submitBtnXPath = "//button[@type='submit']";
+
+    public LoginPage() {
+        super(Page.LOGIN);
+    }
 
     private void setLogin(User user) {
         sendKeys(user.getUserLogin(), loginInputXPath);
@@ -23,10 +28,15 @@ public class LoginPage extends BasePage {
         setPassword(user);
     }
 
-    public MainPage login(User user) {
+    public DashboardPage login(User user) {
         setUserCredentials(user);
-        click(submitBtnXPath);
+        clickSubmitBtn();
+        validateLogInSuccessfulMessage(user);
+        return new DashboardPage();
+    }
+
+    private void validateLogInSuccessfulMessage(User user) {
+        validateAppInfoMessages(SIGNED_IN_SUCCESSFULLY);
         log.info("User '{}' logged in successfully", user.getUserLogin());
-        return new MainPage();
     }
 }

@@ -1,4 +1,4 @@
-package by.kazak.taf.business.restApi;
+package by.kazak.taf.business.common;
 
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;

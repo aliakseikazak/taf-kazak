@@ -1,9 +1,9 @@
-package by.kazak.taf.business.restApi.resources;
+package by.kazak.taf.business.apiResources.userController;
 
 public enum UserURIPath {
     GET("get");
 
-    private String apiPath;
+    private final String apiPath;
 
     UserURIPath(String uriPath) {
         this.apiPath = String.format("apiJsonSchemas/user-%s-request.json", uriPath);

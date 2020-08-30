@@ -66,6 +66,7 @@ public final class Browser {
 
     public void navigate(final String url) {
         getDriver().navigate().to(url);
+        log.info("Navigate to '{}' url", url);
     }
 
     private static WebDriver initDriver() {

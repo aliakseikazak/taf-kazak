@@ -18,6 +18,8 @@ public class ConfigData {
 
     public static final String SUPER_USER_NAME = PropertyManager.getProperty("app.users.superuser.name", APP_ENV);
     public static final String SUPER_USER_PASSWORD = PropertyManager.getProperty("app.users.superuser.password", APP_ENV);
+    public static final String SUPER_USER_TOKEN = PropertyManager.getProperty("app.users.superuser.token", APP_ENV);
     public static final String DEFAULT_USER_NAME = PropertyManager.getProperty("app.users.default.name", APP_ENV);
     public static final String DEFAULT_USER_PASSWORD = PropertyManager.getProperty("app.users.default.password", APP_ENV);
+    public static final String DEFAULT_USER_TOKEN = PropertyManager.getProperty("app.users.default.token", APP_ENV);
 }
