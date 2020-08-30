@@ -3,7 +3,7 @@ package by.kazak.taf.business.page;
 public enum Page {
     LOGIN("login-page-content"), DASHBOARD("dashboard-page-header"), SETTINGS("settings-page"), GENERAL_SETTINGS("general-tab");
 
-    private String pageInitXPath;
+    private final String pageInitXPath;
 
     Page(String pageInitXPath) {
         this.pageInitXPath = pageInitXPath;

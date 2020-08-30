@@ -17,7 +17,7 @@ public class SettingsPage extends BasePage {
         super(Page.SETTINGS);
     }
 
-    public <TPage extends BasePage> TPage openTab(SettingsTab tab, Class<TPage> tabPage) {
+    public <TPage extends SettingsPage> TPage openTab(SettingsTab tab, Class<TPage> tabPage) {
         click(tab.toString());
         try {
             return tabPage.getConstructor().newInstance();

@@ -23,22 +23,22 @@ public class GeneralSettingsPage extends SettingsPage {
         NAME("Name"), LAUNCH_INACTIVITY_TIMEOUT("Launch inactivity timeout"), KEEP_LAUNCHES("Keep launches"),
         KEEP_LOGS("Keep logs"), KEEP_ATTACHMENTS("Keep attachments");
 
+        private final String name;
+
         Dropdown(String name) {
             this.name = name;
         }
-
-        private final String name;
     }
 
     public enum DropdownValue {
         ONE_HOUR("1 hour"), THREE_HOURS("3 hours"), SIX_HOURS("6 hours"), TWELVE_HOURS("12 hours"), ONE_DAY("1 day"), SEVEN_DAYS("7 days"),
         FOURTEEN_DAYS("14 days"), TWENTY_ONE_DAYS("21 days"), TREATY_DAYS("30 days"), NINETY_DAYS("90 days"), HALF_YEAR("180 days"), FOREVER("Forever");
 
+        private final String value;
+
         DropdownValue(String value) {
             this.value = value;
         }
-
-        private final String value;
     }
 
     public GeneralSettingsPage selectValueFromLaunchInactivityTimeoutDropdown(DropdownValue value) {

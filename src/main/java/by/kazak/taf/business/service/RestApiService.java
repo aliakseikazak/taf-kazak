@@ -14,13 +14,13 @@ public class RestApiService implements BaseApiAssertion {
         return String.format(apiPath.toString(), controller);
     }
 
-    protected void generalChecks(ValidatableResponse response, int statusCode, URI uri) {
+    private void generalChecks(ValidatableResponse response, int statusCode, URI uri) {
         checkStatusCode(response, statusCode);
         checkContentType(response, ContentType.JSON);
         checkMatchJsonSchema(response, uri);
     }
 
-    protected void GETChecks(ValidatableResponse response, URI uri) {
+    protected void GETGeneralChecks(ValidatableResponse response, URI uri) {
         generalChecks(response, HTTP_OK, uri);
     }
 }

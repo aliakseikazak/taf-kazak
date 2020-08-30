@@ -19,12 +19,12 @@ public interface BaseApiAssertion extends ResponseFieldPath {
     default void checkStatusCode(ValidatableResponse response, int statusCode) {
         assertThat(String.format("Check that status code of request is equal to: %d", statusCode), extract(response).statusCode(),
                 equalTo(statusCode));
-        log.info("Status code is correct. Status code: {}", statusCode);
+        log.info("Status code is correct. Status code: '{}'", statusCode);
     }
 
     default void checkContentType(ValidatableResponse response, ContentType contentType) {
-        assertThat(String.format("Check that response contains '%s' content type", contentType.toString()), extract(response).contentType(),
-                equalTo(contentType));
+        assertThat(String.format("Check that response contains '%s' content type", contentType), extract(response).contentType(),
+                equalTo(contentType.toString()));
         log.info("Response contains '{}' content type", contentType);
     }
 

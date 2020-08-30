@@ -10,6 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import by.kazak.taf.core.config.ConfigData;
 import by.kazak.taf.core.webDriver.Browser;
 import lombok.extern.log4j.Log4j2;
 
@@ -32,7 +33,7 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         log.error("\n-=========================================[ TEST {}.{} FAILED ]=========================================-",
                 result.getTestClass().getName(), result.getMethod().getMethodName());
-        saveScreenshot(result);
+        if (!ConfigData.BROWSER.equals("none")) saveScreenshot(result);
     }
 
     private void saveScreenshot(ITestResult result) {

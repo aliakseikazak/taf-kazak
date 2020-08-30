@@ -10,15 +10,10 @@ public class TestResource {
     public static File getResourceAsFile(String pathToFile) {
         try {
             InputStream in = ClassLoader.getSystemClassLoader().getResourceAsStream(pathToFile);
-            if (in == null) {
-                return null;
-            }
-
+            if (in == null) return null;
             File tempFile = File.createTempFile(String.valueOf(in.hashCode()), ".tmp");
             tempFile.deleteOnExit();
-
             try (FileOutputStream out = new FileOutputStream(tempFile)) {
-                //copy stream
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 while ((bytesRead = in.read(buffer)) != -1) {

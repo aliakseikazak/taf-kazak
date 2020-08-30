@@ -18,7 +18,6 @@ public class Base {
     }
 
     private void environmentLogger() {
-        // TODO: add more useful info
         log.info("====ENVIRONMENT INFO====");
         Map<Object, Object> envInfo = Stream.of(new String[][]{
                 {"APP", ConfigData.APP_NAME},

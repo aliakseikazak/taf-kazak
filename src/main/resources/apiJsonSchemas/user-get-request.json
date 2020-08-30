@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Request GET user",
+  "type": "object",
+  "description": "Return information about specified user",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "photoId": {
+      "type": "string"
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "accountType": {
+      "type": "string",
+      "enum": [
+        "INTERNAL",
+        "UPSA",
+        "Github",
+        "Ldap"
+      ]
+    },
+    "userRole": {
+      "type": "string",
+      "enum": [
+        "USER",
+        "ADMINISTRATOR"
+      ]
+    },
+    "photoLoaded": {
+      "type": "boolean"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "last_login": {
+          "type": "integer"
+        },
+        "attachmentContentType": {
+          "type": "string",
+          "enum": [
+            "image/jpeg"
+          ]
+        }
+      }
+    },
+    "assignedProjects": {
+      "type": "object",
+      "items": {
+        "type": "object",
+        "properties": {
+          "projectRole": {
+            "type": "string",
+            "enum": [
+              "CUSTOMER",
+              "OPERATOR",
+              "MEMBER",
+              "PROJECT MANAGER"
+            ]
+          },
+          "entryType": {
+            "type": "string",
+            "enum": [
+              "INTERNAL"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "userId",
+    "email",
+    "photoId",
+    "fullName",
+    "accountType",
+    "userRole",
+    "photoLoaded",
+    "metadata",
+    "assignedProjects"
+  ]
+}

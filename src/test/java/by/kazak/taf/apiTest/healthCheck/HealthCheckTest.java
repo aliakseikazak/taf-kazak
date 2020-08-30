@@ -7,6 +7,7 @@ import by.kazak.taf.business.model.User;
 import by.kazak.taf.business.service.UserApiService;
 import by.kazak.taf.business.service.UserCreatorService;
 import by.kazak.taf.core.util.TestGroup;
+import io.restassured.response.ValidatableResponse;
 
 public class HealthCheckTest extends BaseTestApi {
 
@@ -16,6 +17,9 @@ public class HealthCheckTest extends BaseTestApi {
 
         /* @Step 1: Check that superuser exist; Expected: Valid response */
         UserApiService userApiService = new UserApiService();
-        userApiService.getUserInfo(superUser);
+        ValidatableResponse response = userApiService.getUserInfo(superUser);
+        
+        /* @Step 2: Check that in response correct user; Expected: User correct */
+        userApiService.validateUserLogin(response, superUser);
     }
 }

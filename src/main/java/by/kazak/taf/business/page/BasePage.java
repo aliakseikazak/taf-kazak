@@ -103,6 +103,7 @@ public class BasePage extends AbstractPage {
         waitUntilElementVisible(infoMessageXPath);
         assertThat(String.format("Check that '%s' app info message appears correctly", message),
                 getText(infoMessageXPath), is(equalToIgnoringCase(message)));
+        click(infoMessageXPath);
         waitUntilElementInvisible(infoMessageXPath);
     }
 
