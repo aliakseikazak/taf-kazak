@@ -8,7 +8,7 @@ import io.restassured.response.ValidatableResponse;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
-public class RestApiService implements BaseApiAssertion {
+public class RestApi implements BaseApiAssertion {
 
     protected String setApiPath(Enum apiPath, String controller) {
         return String.format(apiPath.toString(), controller);

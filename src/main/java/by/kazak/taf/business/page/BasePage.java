@@ -9,12 +9,15 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import by.kazak.taf.business.page.common.element.ButtonElement;
+import by.kazak.taf.business.page.common.element.InputElement;
 import by.kazak.taf.core.config.ConfigData;
 import lombok.extern.log4j.Log4j2;
 
@@ -30,15 +33,27 @@ public class BasePage extends AbstractPage {
     protected static final String DROPDOWN_ITEM_XPATH = "//div[contains(@class, 'single-option')]";
     protected static final String DROPDOWN_VALUE_XPATH = "//span[contains(@class, 'value')]";
 
+    protected static String pageInitXpath;
     protected static String pageInitXPathFormat = "//*[contains(@class, '%s')]";
+    protected static String specificButtonXPathFormat = "//button[./*[text()='%s'] | text()='%s']";
+    protected static String specificInputXPathFormat = "//*[@placeholder='%s']";
 
     protected BasePage(Page page) {
-        waitUntilElementVisible(String.format(pageInitXPathFormat, page.getPageInitXPath()));
+        pageInitXpath = String.format(pageInitXPathFormat, page.getPageInitXPath());
+        waitUntilElementVisible(pageInitXpath);
         log.info(page.toString());
     }
 
     protected void clickSubmitBtn() {
         click(SUBMIT_BTN_XPATH);
+    }
+
+    protected void clickSpecificBtn(ButtonElement button) {
+        click(String.format(BASE_FORMAT, pageInitXpath, String.format(specificButtonXPathFormat, button.getButtonName(), button.getButtonName())));
+    }
+
+    protected void sendKeysToSpecificInput(String value, InputElement input) {
+        sendKeys(value, String.format(BASE_FORMAT, pageInitXpath, String.format(specificInputXPathFormat, input.getInputName())));
     }
 
     protected void click(String elementXPath) {
@@ -99,12 +114,17 @@ public class BasePage extends AbstractPage {
     }
 
     protected void validateAppInfoMessages(String message) {
+        validateAppInfoMessages(message, StringUtils.EMPTY);
+    }
+
+    protected void validateAppInfoMessages(String message, String logMessage) {
         String infoMessageXPath = "//div[@id='notification-root']//p";
         waitUntilElementVisible(infoMessageXPath);
         assertThat(String.format("Check that '%s' app info message appears correctly", message),
                 getText(infoMessageXPath), is(equalToIgnoringCase(message)));
         click(infoMessageXPath);
         waitUntilElementInvisible(infoMessageXPath);
+        log.info("{}", logMessage.isEmpty() ? message : logMessage);
     }
 
     protected String getText(String elementXPath) {
@@ -151,7 +171,32 @@ public class BasePage extends AbstractPage {
                     }
                     return false;
                 });
-        log.info("Select '{}' value from dropdown xpath: {}", value, createXPath(elementXPath));
+        log.info("Select '{}' value from dropdown with xPath: {}", value, createXPath(elementXPath));
+    }
+
+    protected boolean isElementVisible(String elementXPath) {
+        return isElementVisible(ConfigData.WAIT_TIMEOUT_SECONDS, elementXPath);
+    }
+
+    protected boolean isElementVisible(long timeout, String elementXPath) {
+        try {
+            WebElement element = waitUntilElementVisible(timeout, elementXPath);
+            return element != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    protected boolean isElementInvisible(String elementXPath) {
+        return isElementInvisible(ConfigData.WAIT_TIMEOUT_SECONDS, elementXPath);
+    }
+
+    protected boolean isElementInvisible(long timeout, String elementXPath) {
+        try {
+            return waitUntilElementInvisible(timeout, elementXPath);
+        } catch (TimeoutException exception) {
+            return false;
+        }
     }
 
     protected void selectTextByPressCtrlA(String elementXPath) {

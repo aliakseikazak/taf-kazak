@@ -4,12 +4,12 @@ import org.testng.annotations.Test;
 
 import by.kazak.taf.business.common.BaseTest;
 import by.kazak.taf.business.model.User;
-import by.kazak.taf.business.page.DashboardPage;
+import by.kazak.taf.business.page.dashboard.AllDashboardsPage;
 import by.kazak.taf.business.page.LoginPage;
 import by.kazak.taf.business.page.settings.GeneralSettingsPage;
 import by.kazak.taf.business.page.settings.SettingsPage;
 import by.kazak.taf.business.page.settings.SettingsTab;
-import by.kazak.taf.business.service.UserCreatorService;
+import by.kazak.taf.business.service.UserCreator;
 import by.kazak.taf.core.util.TestGroup;
 
 public class SettingsPageTest extends BaseTest {
@@ -19,13 +19,13 @@ public class SettingsPageTest extends BaseTest {
      */
     @Test(groups = {TestGroup.UI, TestGroup.REGRESSION}, description = "Verifies user is able to change general settings")
     public void userCanChangeLaunchInactivityTimeoutSettings() {
-        User user = UserCreatorService.getDefaultUser();
+        User user = UserCreator.getDefaultUser();
 
         /* @Step 1: Log in as default user; Expected: Dashboard page appears */
-        DashboardPage dashboardPage = new LoginPage().login(user);
+        AllDashboardsPage allDashboardsPage = new LoginPage().login(user);
 
         /* @Step 2: Open settings; Expected: Setting page appears */
-        SettingsPage settingsPage = dashboardPage.openSettingsPage();
+        SettingsPage settingsPage = allDashboardsPage.openSettingsPage();
 
         /* @Step 3: Open 'general' settings tab; Expected: General setting tab appears */
         GeneralSettingsPage generalSettingsPage = settingsPage.openTab(SettingsTab.GENERAL, GeneralSettingsPage.class);

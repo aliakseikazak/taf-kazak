@@ -17,7 +17,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @Log4j2
-public class UserApiService extends RestApiService implements BaseApiAssertion {
+public class UserApi extends RestApi implements BaseApiAssertion {
 
     private static final URI GET_RESPONSES = Objects.requireNonNull(TestResource.getResourceAsFile(UserURIPath.GET.getUriPath())).toURI();
 

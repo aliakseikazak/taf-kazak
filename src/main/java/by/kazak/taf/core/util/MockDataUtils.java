@@ -25,11 +25,15 @@ public class MockDataUtils {
         return getRandomString(0, length - 1);
     }
 
-    public static String generateUserName() {
-        return String.format("TAF_%s", getRandomString(5));
+    public static String generateName() {
+        return String.format("TAF_%s", getRandomString(10));
     }
 
     public static String generatePassword() {
-        return String.format("%s%s", getRandomString(4), getRandomIntAsString(4));
+        return String.format("%s%s", getRandomString(5), getRandomIntAsString(5));
+    }
+
+    public static String generateDescription() {
+        return String.format("%s %s %s %s.", getRandomString(8, 10), getRandomString(5, 7), getRandomString(5, 7), getRandomString(5, 7));
     }
 }

@@ -4,7 +4,7 @@ import by.kazak.taf.business.model.User;
 import by.kazak.taf.core.config.ConfigData;
 import by.kazak.taf.core.util.MockDataUtils;
 
-public class UserCreatorService {
+public class UserCreator {
 
     public static User getSuperUser() {
         return new User(ConfigData.SUPER_USER_NAME, ConfigData.SUPER_USER_PASSWORD, ConfigData.SUPER_USER_TOKEN);
@@ -15,6 +15,6 @@ public class UserCreatorService {
     }
 
     public static User generateNewUser() {
-        return new User(MockDataUtils.generateUserName(), MockDataUtils.generatePassword());
+        return new User(MockDataUtils.generateName(), MockDataUtils.generatePassword());
     }
 }
