@@ -1,7 +1,7 @@
 package by.kazak.taf.business.apiResources.userController;
 
 public enum UserAPIPath {
-    USER_INFO("%s");
+    USER_LOGIN("%s"), USER("");
 
     private final String apiPath;
 

@@ -2,6 +2,8 @@ package by.kazak.taf.business.service;
 
 import java.net.URI;
 
+import org.apache.commons.lang3.StringUtils;
+
 import by.kazak.taf.business.common.BaseApiAssertion;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
@@ -9,6 +11,10 @@ import io.restassured.response.ValidatableResponse;
 import static java.net.HttpURLConnection.HTTP_OK;
 
 public class RestApiService implements BaseApiAssertion {
+
+    protected String setApiPath(Enum apiPath) {
+        return String.format(apiPath.toString(), StringUtils.EMPTY);
+    }
 
     protected String setApiPath(Enum apiPath, String controller) {
         return String.format(apiPath.toString(), controller);

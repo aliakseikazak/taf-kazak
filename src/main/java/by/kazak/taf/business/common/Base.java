@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import org.testng.annotations.BeforeSuite;
 
 import by.kazak.taf.core.config.ConfigData;
+import io.restassured.RestAssured;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -15,6 +16,7 @@ public class Base {
     @BeforeSuite
     public void beforeSuite() {
         environmentLogger();
+        RestAssured.baseURI = ConfigData.BASE_API_URL;
     }
 
     private void environmentLogger() {

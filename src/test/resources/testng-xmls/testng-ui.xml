@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Tests" verbose="1">
+<suite name="UI Tests" verbose="1">
 
-    <test name="All regression tests" parallel="true">
+    <test name="User interface tests" parallel="methods">
         <groups>
             <run>
-                <include name="Regression"/>
+                <include name="UserInterface"/>
             </run>
         </groups>
 
         <packages>
-            <package name="by.kazak.taf.apiTest.*"/>
             <package name="by.kazak.taf.uiTest.*"/>
         </packages>
     </test>

@@ -8,11 +8,10 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class User {
+public class Dashboard {
 
     @NonNull
-    private String userLogin;
-    @NonNull
-    private String password;
-    private String token;
+    private String name;
+    private String description;
+    private boolean share;
 }

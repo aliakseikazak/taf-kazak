@@ -22,7 +22,6 @@ public class PropertyManager {
 
     public static String getProperty(String property, String environment) {
         Env env = Env.valueOf(environment.toUpperCase());
-        // TODO: add possibility to choose env from System.property
         return switch (env) {
             case QA -> qaProperty.getString(property);
             case WEB -> webProperty.getString(property);

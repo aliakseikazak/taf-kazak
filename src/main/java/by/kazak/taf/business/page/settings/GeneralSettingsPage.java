@@ -68,6 +68,5 @@ public class GeneralSettingsPage extends SettingsPage {
 
     private void validateSettingsUpdatedSuccessfulMessage() {
         validateAppInfoMessages(SETTINGS_UPDATED_SUCCESSFULLY);
-        log.info(SETTINGS_UPDATED_SUCCESSFULLY);
     }
 }
