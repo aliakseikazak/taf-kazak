@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="UI Tests" verbose="1">
 
-    <test name="User interface tests" parallel="methods">
+    <test name="User interface tests" parallel="true">
         <groups>
             <run>
                 <include name="UserInterface"/>
@@ -10,7 +10,7 @@
         </groups>
 
         <packages>
-            <package name="by.kazak.taf.uiTest.*"/>
+            <package name="by.kazak.taf.test.uiTest.*"/>
         </packages>
     </test>
 

@@ -1,4 +1,4 @@
-package by.kazak.taf.apiTest.healthCheck;
+package by.kazak.taf.test.apiTest.healthCheck;
 
 import org.testng.annotations.Test;
 

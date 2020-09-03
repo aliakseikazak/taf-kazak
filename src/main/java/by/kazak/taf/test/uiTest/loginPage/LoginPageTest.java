@@ -1,12 +1,12 @@
-package by.kazak.taf.uiTest.loginPage;
+package by.kazak.taf.test.uiTest.loginPage;
 
 import org.testng.annotations.Test;
 
 import by.kazak.taf.business.common.BaseTest;
 import by.kazak.taf.business.dataProvider.CommonDataProvider;
 import by.kazak.taf.business.model.User;
-import by.kazak.taf.business.page.dashboard.AllDashboardsPage;
 import by.kazak.taf.business.page.LoginPage;
+import by.kazak.taf.business.page.dashboard.AllDashboardsPage;
 import by.kazak.taf.core.util.TestGroup;
 
 public class LoginPageTest extends BaseTest {

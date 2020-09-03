@@ -1,4 +1,4 @@
-package by.kazak.taf.setup;
+package by.kazak.taf.test.setup;
 
 import by.kazak.taf.business.model.ProjectApi;
 import by.kazak.taf.business.model.User;

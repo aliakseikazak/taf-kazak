@@ -5,19 +5,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
 import by.kazak.taf.core.config.ConfigData;
+import by.kazak.taf.core.util.TestListener;
 import io.restassured.RestAssured;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class Base {
+@Listeners({TestListener.class})
+public abstract class Base {
 
-    @BeforeSuite
-    public void beforeSuite() {
+    @BeforeSuite(alwaysRun = true)
+    protected void beforeSuite() {
+        initParams();
         environmentLogger();
         RestAssured.baseURI = ConfigData.BASE_API_URL;
     }
+
+    protected abstract void initParams();
 
     private void environmentLogger() {
         log.info("====ENVIRONMENT INFO====");

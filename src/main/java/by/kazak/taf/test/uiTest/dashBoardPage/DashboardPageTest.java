@@ -1,4 +1,4 @@
-package by.kazak.taf.uiTest.dashBoardPage;
+package by.kazak.taf.test.uiTest.dashBoardPage;
 
 import org.testng.annotations.Test;
 
@@ -12,7 +12,7 @@ import by.kazak.taf.business.page.dashboard.DashboardPage;
 import by.kazak.taf.business.service.DashboardCreator;
 import by.kazak.taf.core.util.MockDataUtils;
 import by.kazak.taf.core.util.TestGroup;
-import by.kazak.taf.setup.TestDataSetup;
+import by.kazak.taf.test.setup.TestDataSetup;
 
 public class DashboardPageTest extends BaseTest {
 

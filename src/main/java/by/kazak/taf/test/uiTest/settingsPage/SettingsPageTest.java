@@ -1,11 +1,11 @@
-package by.kazak.taf.uiTest.settingsPage;
+package by.kazak.taf.test.uiTest.settingsPage;
 
 import org.testng.annotations.Test;
 
 import by.kazak.taf.business.common.BaseTest;
 import by.kazak.taf.business.model.User;
-import by.kazak.taf.business.page.dashboard.AllDashboardsPage;
 import by.kazak.taf.business.page.LoginPage;
+import by.kazak.taf.business.page.dashboard.AllDashboardsPage;
 import by.kazak.taf.business.page.settings.GeneralSettingsPage;
 import by.kazak.taf.business.page.settings.SettingsPage;
 import by.kazak.taf.business.page.settings.SettingsTab;

@@ -10,8 +10,8 @@
         </groups>
 
         <packages>
-            <package name="by.kazak.taf.apiTest.*"/>
-            <package name="by.kazak.taf.uiTest.*"/>
+            <package name="by.kazak.taf.test.apiTest.*"/>
+            <package name="by.kazak.taf.test.uiTest.*"/>
         </packages>
     </test>
 
